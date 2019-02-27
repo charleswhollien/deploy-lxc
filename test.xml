@@ -1,0 +1,53 @@
+<domain type='lxc'>
+  <name>yup</name>
+  <uuid>UUID</uuid>
+  <memory unit='KiB'>65536</memory>
+  <currentMemory unit='KiB'>65536</currentMemory>
+  <vcpu placement='static'>1</vcpu>
+  <os>
+    <type arch='x86_64'>exe</type>
+    <init>/sbin/init</init>
+  </os>
+  <features>
+    <capabilities policy='allow'>
+    </capabilities>
+  </features>
+  <clock offset='utc'/>
+  <on_poweroff>destroy</on_poweroff>
+  <on_reboot>restart</on_reboot>
+  <on_crash>destroy</on_crash>
+  <devices>
+    <emulator>/usr/libexec/libvirt_lxc</emulator>
+    <filesystem type='mount' accessmode='passthrough'>
+      <source dir='CONTAINERPATH'/>
+      <target dir='/'/>
+    </filesystem>
+    <filesystem type='mount' accessmode='passthrough'>
+      <source dir='proc'/>
+      <target dir='/dev/.lxc/proc'/>
+    </filesystem>
+    <filesystem type='mount' accessmode='passthrough'>
+      <source dir='sys'/>
+      <target dir='/dev/.lxc/sys'/>
+    </filesystem>
+    <interface type='bridge'>
+      <mac address='00:10:00:10:00:00'/>
+      <source bridge='br0'/>
+      <link state='up'/>
+    </interface>
+    <console type='pty'>
+      <target type='lxc' port='0'/>
+    </console>
+    <console type='pty'>
+      <target type='lxc' port='1'/>
+    </console>
+    <console type='pty'>
+      <target type='lxc' port='2'/>
+    </console>
+    <console type='pty'>
+      <target type='lxc' port='3'/>
+    </console>
+  </devices>
+</domain>
+
+
